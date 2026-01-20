@@ -39,9 +39,7 @@ export default function Navbar() {
   };
 
   const talukas = TALUKA_MAP[city] || [];
-
-  const selectedTaluka =
-    localStorage.getItem("taluka") || "Select Taluka";
+  const selectedTaluka = localStorage.getItem("taluka") || "Select Taluka";
 
   const setTaluka = (t) => {
     localStorage.setItem("taluka", t);
@@ -49,20 +47,12 @@ export default function Navbar() {
   };
 
   return (
-    <header
-  className="
-    sticky top-0 left-0 w-full
-    bg-white shadow-md
-    z-[9999]
-    px-5 py-3
-  "
->
-
+    <header className="sticky top-0 left-0 w-full bg-white shadow-md z-[9999] px-5 py-3">
       <div className="flex justify-between items-center">
 
         {/* LOGO */}
         <div
-          className="flex items-center gap-2 cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition"
           onClick={() => navigate("/")}
         >
           <img src={logo} alt="logo" className="h-9 w-9 rounded-full" />
@@ -76,28 +66,33 @@ export default function Navbar() {
 
           {isLanding ? (
             <>
-              <button onClick={() => navigate("/auth")}>{t.weather}</button>
               <button
-  onClick={() => {
-    const section = document.getElementById("benefits");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  }}
-  className="px-4 py-2"
->
-  {t.navBenefits}
-</button>
+                onClick={() => navigate("/auth")}
+                className="hover:text-green-600 transition"
+              >
+                {t.weather}
+              </button>
+
+              <button
+                onClick={() => {
+                  const section = document.getElementById("benefits");
+                  if (section) section.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="px-4 py-2 hover:text-green-600 transition"
+              >
+                {t.navBenefits}
+              </button>
 
               <button
                 onClick={() => navigate("/auth")}
-                className="bg-green-600 text-white px-3 py-1 rounded"
+                className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
               >
                 {t.login}
               </button>
+
               <button
                 onClick={() => navigate("/auth")}
-                className="bg-yellow-400 px-3 py-1 rounded"
+                className="bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500 transition"
               >
                 {t.signup}
               </button>
@@ -109,7 +104,7 @@ export default function Navbar() {
                 <div className="relative">
                   <button
                     onClick={() => setTalukaOpen(!talukaOpen)}
-                    className="flex items-center gap-1 text-sm font-medium"
+                    className="flex items-center gap-1 text-sm font-medium hover:text-green-600 transition"
                   >
                     📍 {city} · {selectedTaluka}
                   </button>
@@ -120,7 +115,7 @@ export default function Navbar() {
                         <div
                           key={t}
                           onClick={() => setTaluka(t)}
-                          className="px-3 py-2 hover:bg-green-100 cursor-pointer text-sm"
+                          className="px-3 py-2 hover:bg-green-100 cursor-pointer text-sm transition"
                         >
                           {t}
                         </div>
@@ -130,13 +125,36 @@ export default function Navbar() {
                 </div>
               )}
 
-              <button onClick={() => navigate("/sell-crop")}>{t.sell}</button>
-              <button onClick={() => navigate("/track")}>{t.track}</button>
-              <button onClick={() => navigate("/profile")}>{t.profile}</button>
-              <button onClick={() => navigate("/support")}>{t.support}</button>
+              <button
+                onClick={() => navigate("/sell-crop")}
+                className="hover:text-green-600 transition"
+              >
+                {t.sell}
+              </button>
+
+              <button
+                onClick={() => navigate("/track")}
+                className="hover:text-green-600 transition"
+              >
+                {t.track}
+              </button>
+
+              <button
+                onClick={() => navigate("/profile")}
+                className="hover:text-green-600 transition"
+              >
+                {t.profile}
+              </button>
+
+              <button
+                onClick={() => navigate("/support")}
+                className="hover:text-green-600 transition"
+              >
+                {t.support}
+              </button>
 
               <div
-                className="flex items-center gap-2 cursor-pointer"
+                className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition"
                 onClick={() => navigate("/profile")}
               >
                 <img
@@ -151,7 +169,7 @@ export default function Navbar() {
                   localStorage.removeItem("user");
                   navigate("/");
                 }}
-                className="bg-red-500 text-white px-3 py-1 rounded"
+                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
               >
                 {t.logout}
               </button>
@@ -160,7 +178,7 @@ export default function Navbar() {
             !isAuthPage && (
               <button
                 onClick={() => navigate("/auth")}
-                className="bg-green-600 text-white px-3 py-1 rounded"
+                className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
               >
                 {t.login}
               </button>
@@ -171,7 +189,7 @@ export default function Navbar() {
           <select
             value={language}
             onChange={(e) => changeLanguage(e.target.value)}
-            className="border rounded px-2 py-1 text-sm"
+            className="border rounded px-2 py-1 text-sm hover:border-green-500 transition"
           >
             <option value="en">EN</option>
             <option value="hi">HI</option>
@@ -181,8 +199,6 @@ export default function Navbar() {
 
         {/* MOBILE */}
         <div className="md:hidden flex items-center gap-2">
-
-          {/* LANGUAGE ALWAYS VISIBLE */}
           <select
             value={language}
             onChange={(e) => changeLanguage(e.target.value)}
@@ -193,15 +209,18 @@ export default function Navbar() {
             <option value="mr">MR</option>
           </select>
 
-          {/* HAMBURGER */}
-          <button onClick={() => setMenuOpen(!menuOpen)}>☰</button>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="hover:opacity-70 transition"
+          >
+            ☰
+          </button>
         </div>
       </div>
 
       {/* MOBILE MENU */}
       {menuOpen && (
         <div className="md:hidden mt-3 space-y-3">
-
           {city && (
             <div>
               <p className="text-sm font-semibold">📍 {city}</p>
