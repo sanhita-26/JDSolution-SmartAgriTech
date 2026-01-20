@@ -150,6 +150,37 @@ const TRANSLATIONS = {
 support_phone: "Phone",
 support_email: "Email",
 support_time: "Working Hours",
+
+pickupTitle: "Pickup Status",
+pickupSubtitle: "Track your sell requests",
+pickupRequestNo: "Request Number",
+pickupPlaceholder: "Enter Request Number",
+pickupTrack: "Track Pickup",
+pickupActive: "Active Request",
+pickupInProgress: "In Progress",
+pickupRequestSent: "Request Sent",
+pickupAssigned: "Pickup Assigned",
+pickupOutForPickup: "Out for Pickup",
+pickupCompleted: "Completed",
+pickupAssignedTo: "Assigned to",
+pickupExpected: "Expected",
+pickupCall: "Call Support",
+pickupNotFound: "No request found for this number",
+
+profileTitle: "My Profile",
+profileUpdated: "Profile updated successfully!",
+profileName: "Full Name",
+profilePhone: "Mobile Number",
+profileAddress: "Address",
+profileSelectCity: "Select Your City",
+profileLanguage: "English",   // shows current language
+profileEdit: "Edit Profile",
+profileSave: "Save Changes",
+profileCancel: "Cancel"
+
+
+
+
   },
 
   hi: {
@@ -298,6 +329,36 @@ support_phone: "फोन",
 support_email: "ईमेल",
 support_time: "समय",
 
+pickupTitle: "पिकअप स्थिति",
+pickupSubtitle: "अपनी बिक्री अनुरोध ट्रैक करें",
+pickupRequestNo: "अनुरोध संख्या",
+pickupPlaceholder: "अनुरोध संख्या दर्ज करें",
+pickupTrack: "पिकअप ट्रैक करें",
+pickupActive: "सक्रिय अनुरोध",
+pickupInProgress: "प्रक्रिया में",
+pickupRequestSent: "अनुरोध भेजा गया",
+pickupAssigned: "पिकअप सौंपा गया",
+pickupOutForPickup: "पिकअप के लिए निकला",
+pickupCompleted: "पूरा हुआ",
+pickupAssignedTo: "सौंपा गया",
+pickupExpected: "अपेक्षित",
+pickupCall: "सपोर्ट कॉल करें",
+pickupNotFound: "इस संख्या के लिए कोई अनुरोध नहीं मिला",
+
+profileTitle: "मेरा प्रोफ़ाइल",
+profileUpdated: "प्रोफ़ाइल सफलतापूर्वक अपडेट हुई!",
+profileName: "पूरा नाम",
+profilePhone: "मोबाइल नंबर",
+profileAddress: "पता",
+profileSelectCity: "अपने शहर का चयन करें",
+profileLanguage: "हिंदी",  // shows current language
+profileEdit: "प्रोफ़ाइल संपादित करें",
+profileSave: "परिवर्तन सहेजें",
+profileCancel: "रद्द करें"
+
+
+
+
   },
 
   mr: {
@@ -444,6 +505,35 @@ support_time: "समय",
 support_phone: "फोन",
 support_email: "ईमेल",
 support_time: "वेळ",
+pickupTitle: "पिकअप स्थिती",
+pickupSubtitle: "तुमच्या विक्री विनंत्या ट्रॅक करा",
+pickupRequestNo: "विनंती क्रमांक",
+pickupPlaceholder: "विनंती क्रमांक टाका",
+pickupTrack: "पिकअप ट्रॅक करा",
+pickupActive: "सक्रिय विनंती",
+pickupInProgress: "प्रगतीत",
+pickupRequestSent: "विनंती पाठवली",
+pickupAssigned: "पिकअप नियुक्त",
+pickupOutForPickup: "पिकअपसाठी निघाले",
+pickupCompleted: "पूर्ण",
+pickupAssignedTo: "नियुक्त",
+pickupExpected: "अपेक्षित",
+pickupCall: "सपोर्ट कॉल करा",
+pickupNotFound: "या क्रमांकासाठी विनंती आढळली नाही",
+
+profileTitle: "माझा प्रोफाइल",
+profileUpdated: "प्रोफाइल यशस्वीरित्या अपडेट झाली!",
+profileName: "पूर्ण नाव",
+profilePhone: "मोबाईल नंबर",
+profileAddress: "पत्ता",
+profileSelectCity: "आपले शहर निवडा",
+profileLanguage: "मराठी",  // shows current language
+profileEdit: "प्रोफाइल संपादित करा",
+profileSave: "बदल जतन करा",
+profileCancel: "रद्द करा"
+
+
+
   },
 };
 

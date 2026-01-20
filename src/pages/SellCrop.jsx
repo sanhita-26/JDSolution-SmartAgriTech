@@ -60,7 +60,7 @@ const SellCrop = () => {
       <div className="max-w-[480px] mx-auto min-h-screen bg-[#fffaf4] px-4 py-6 font-sans">
         {/* BACK BUTTON */}
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/dashboard")}
           className="bg-transparent text-[16px] mb-3 cursor-pointer"
         >
           ← {t.back}

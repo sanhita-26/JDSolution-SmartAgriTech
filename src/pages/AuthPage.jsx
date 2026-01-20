@@ -262,9 +262,9 @@ export default function AuthPage() {
 
         {/* FOOTER IMAGE */}
         <img
-          src="/footer-img.jpg"
+          src="/footer.png"
           alt="footer"
-          className="w-full max-w-sm mt-10 opacity-90"
+          className="fixed bottom-0 left-0 w-full h-auto pointer-events-none"
         />
       </div>
     </div>
