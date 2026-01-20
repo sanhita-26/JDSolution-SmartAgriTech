@@ -3,18 +3,21 @@ import { createContext, useState, useEffect } from "react";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [language, setLanguage] = useState("mr"); // Marathi default
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem("language") || "mr";
+  });
+
   const [loggedIn, setLoggedIn] = useState(false);
 
   // persist language across refresh
   useEffect(() => {
-    const saved = localStorage.getItem("lang");
+    const saved = localStorage.getItem("language");
     if (saved) setLanguage(saved);
   }, []);
 
   const changeLanguage = (lang) => {
     setLanguage(lang);
-    localStorage.setItem("lang", lang);
+    localStorage.setItem("language", lang);
   };
 
   return (

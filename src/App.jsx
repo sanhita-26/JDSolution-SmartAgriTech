@@ -4,7 +4,8 @@ import AuthPage from "./pages/AuthPage";
 import Dashboard from "./pages/Dashboard";
 import SellCrop from "./pages/SellCrop";
 import Support from "./pages/Support";
-
+import PickupStatusSection from "./pages/PickupStatusSection";
+import ProfilePage from "./pages/ProfilePage";
 function App() {
   return (
     <BrowserRouter>
@@ -12,8 +13,10 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/sell" element={<SellCrop />} />
-        <Route path="/support" element={<Support />} />
+        <Route path="/sell-crop" element={<SellCrop />} />
+        <Route path="/track" element={<PickupStatusSection />} />
+        <Route path="/profile" element={<ProfilePage />} />
+         <Route path="/support" element={<Support />} />
       </Routes>
     </BrowserRouter>
   );
