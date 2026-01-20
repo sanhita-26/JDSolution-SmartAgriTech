@@ -4,14 +4,14 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
-  return localStorage.getItem("language") || "mr";
-});
+    return localStorage.getItem("language") || "mr";
+  });
 
   const [loggedIn, setLoggedIn] = useState(false);
 
   // persist language across refresh
   useEffect(() => {
-    const saved = localStorage.getItem("lang");
+    const saved = localStorage.getItem("language");
     if (saved) setLanguage(saved);
   }, []);
 

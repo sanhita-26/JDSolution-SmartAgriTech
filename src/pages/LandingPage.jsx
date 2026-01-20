@@ -61,9 +61,6 @@ export default function LandingPage() {
 
       </div>
 
-      {/* =============================== */}
-      {/* FARMER BENEFITS SECTION         */}
-
     {/* FARMER BENEFITS SECTION */}
 <div
   id="benefits"

@@ -194,26 +194,52 @@ const TRANSLATIONS = {
     myRequests: "My Requests",
 
     farmerBenefitsTitle: "Farmer Benefits",
-farmerBenefitsSubtitle: "Smart farming made simple and powerful",
+    farmerBenefitsSubtitle: "Smart farming made simple and powerful",
 
-farmerBenefits: [
-  {
-    title: "Accurate Crop Planning",
-    desc: "Weather-based predictions help choose the right crop at the right time.",
-    img: "/benefit1.jpg"
-  },
-  {
-    title: "Reduced Crop Loss",
-    desc: "Early alerts for pests, soil issues, and diseases save your yield.",
-    img: "/benefit2.jpg"
-  },
-  {
-    title: "Better Market Prices",
-    desc: "Live mandi prices and demand insights help you sell smarter.",
-    img: "/benefit3.jpg"
-  }
-]
+    dashboardOverview: "Farm Overview",
+    overviewSubtitle: "Quick insights about your farm and crops",
+    yourCrops: "Your Crops",
+    checkPrices: "See Market Rates",
+    checkWeather: "See Weather",
 
+    cropHealthTitle: "Crop Health",
+    cropHealthStatus: "Overall Status",
+    cropHealthHealthy: "Healthy & Stable",
+    cropHealthIssues: "2 minor nutrient issues detected",
+
+    irrigationTitle: "Irrigation Insights",
+    irrigationRecommended: "Recommended today",
+    irrigationPerPlant: "per plant",
+    soilMoisture: "Soil Moisture",
+    soilMoistureLevel: "Moderate",
+    waterSavingTip: "Save around 18% water by irrigating in the evening",
+
+    marketPredictionTitle: "Market Price Prediction",
+    marketTrendNote: "Based on recent market trends",
+
+    profitEstimatorTitle: "Expense vs Profit",
+    expensesLabel: "Expenses",
+    expectedProfitLabel: "Expected Profit",
+    projectedProfit: "Projected profit",
+    regionalComparison: "Lower spending than 72% farmers in xxxxxxxxx region",
+
+    farmerBenefits: [
+      {
+        title: "Accurate Crop Planning",
+        desc: "Weather-based predictions help choose the right crop at the right time.",
+        img: "/benefit1.jpg",
+      },
+      {
+        title: "Reduced Crop Loss",
+        desc: "Early alerts for pests, soil issues, and diseases save your yield.",
+        img: "/benefit2.jpg",
+      },
+      {
+        title: "Better Market Prices",
+        desc: "Live mandi prices and demand insights help you sell smarter.",
+        img: "/benefit3.jpg",
+      },
+    ],
   },
 
   hi: {
@@ -396,26 +422,52 @@ farmerBenefits: [
     myRequests: "मेरी रिक्वेस्ट",
 
     farmerBenefitsTitle: "किसानों के लिए लाभ",
-farmerBenefitsSubtitle: "स्मार्ट खेती अब आसान और अधिक फायदेमंद",
+    farmerBenefitsSubtitle: "स्मार्ट खेती अब आसान और अधिक फायदेमंद",
 
-farmerBenefits: [
-  {
-    title: "सही फसल योजना",
-    desc: "मौसम और मिट्टी आधारित सुझाव आपको सही समय पर सही फसल चुनने में मदद करते हैं।",
-    img: "/benefit1.jpg"
-  },
-  {
-    title: "फसल नुकसान में कमी",
-    desc: "कीट, रोग और मौसम अलर्ट समय पर चेतावनी देकर उपज बचाते हैं।",
-    img: "/benefit2.jpg"
-  },
-  {
-    title: "बेहतर बाजार भाव",
-    desc: "मंडी के लाइव भाव और मांग के डेटा से किसान अच्छी कीमत प्राप्त कर सकते हैं।",
-    img: "/benefit3.jpg"
-  }
-]
+    dashboardOverview: "खेत का सारांश",
+    overviewSubtitle: "आपके खेत और फसलों की जल्दी जानकारी",
+    yourCrops: "आपकी फसलें",
+    checkPrices: "बाज़ार भाव देखें",
+    checkWeather: "मौसम देखें",
 
+    cropHealthTitle: "फसल की सेहत",
+    cropHealthStatus: "कुल स्थिति",
+    cropHealthHealthy: "स्वस्थ और स्थिर",
+    cropHealthIssues: "2 छोटे पोषक तत्वों की समस्याएँ मिलीं",
+
+    irrigationTitle: "सिंचाई सुझाव",
+    irrigationRecommended: "आज की सिफ़ारिश",
+    irrigationPerPlant: "प्रति पौधा",
+    soilMoisture: "मिट्टी में नमी",
+    soilMoistureLevel: "मध्यम",
+    waterSavingTip: "शाम को सिंचाई करने से लगभग 18% पानी बच सकता है",
+
+    marketPredictionTitle: "बाज़ार मूल्य अनुमान",
+    marketTrendNote: "हाल ही के बाज़ार रुझानों पर आधारित",
+
+    profitEstimatorTitle: "खर्च बनाम मुनाफ़ा",
+    expensesLabel: "खर्च",
+    expectedProfitLabel: "अनुमानित मुनाफ़ा",
+    projectedProfit: "अनुमानित मुनाफ़ा",
+    regionalComparison: "आपका खर्च xxxxxxxxx क्षेत्र के 72% किसानों से कम है",
+
+    farmerBenefits: [
+      {
+        title: "सही फसल योजना",
+        desc: "मौसम और मिट्टी आधारित सुझाव आपको सही समय पर सही फसल चुनने में मदद करते हैं।",
+        img: "/benefit1.jpg",
+      },
+      {
+        title: "फसल नुकसान में कमी",
+        desc: "कीट, रोग और मौसम अलर्ट समय पर चेतावनी देकर उपज बचाते हैं।",
+        img: "/benefit2.jpg",
+      },
+      {
+        title: "बेहतर बाजार भाव",
+        desc: "मंडी के लाइव भाव और मांग के डेटा से किसान अच्छी कीमत प्राप्त कर सकते हैं।",
+        img: "/benefit3.jpg",
+      },
+    ],
   },
 
   mr: {
@@ -603,26 +655,53 @@ farmerBenefits: [
     myRequests: "माझ्या विनंत्या",
 
     farmerBenefitsTitle: "शेतकऱ्यांसाठी फायदे",
-farmerBenefitsSubtitle: "स्मार्ट शेती आता सोपी आणि अधिक प्रभावी",
+    farmerBenefitsSubtitle: "स्मार्ट शेती आता सोपी आणि अधिक प्रभावी",
 
-farmerBenefits: [
-  {
-    title: "अचूक पीक नियोजन",
-    desc: "हवामान आणि मातीच्या आधारे दिलेले अंदाज योग्य वेळी योग्य पिकाची निवड करायला मदत करतात.",
-    img: "/benefit1.jpg"
-  },
-  {
-    title: "पीक नुकसानात घट",
-    desc: "कीड, रोग आणि हवामान अलर्ट वेळेवर सूचना देऊन उत्पादन सुरक्षित ठेवतात.",
-    img: "/benefit2.jpg"
-  },
-  {
-    title: "चांगले बाजारभाव",
-    desc: "लाईव्ह बाजारभाव आणि मागणी डेटा शेतकऱ्यांना जास्त नफा मिळवून देतो.",
-    img: "/benefit3.jpg"
-  }
-]
+    dashboardOverview: "शेताचा आढावा",
+    overviewSubtitle: "तुमच्या शेत आणि पिकांची जलद माहिती",
+    yourCrops: "तुमची पिके",
+    checkPrices: "बाजार भाव पाहा",
+    checkWeather: "हवामान पाहा",
 
+    cropHealthTitle: "पिकांची तब्येत",
+    cropHealthStatus: "एकूण स्थिती",
+    cropHealthHealthy: "निरोगी आणि स्थिर",
+    cropHealthIssues: "2 किरकोळ पोषण समस्यांचा शोध लागला",
+
+    irrigationTitle: "सिंचन सूचना",
+    irrigationRecommended: "आजची शिफारस",
+    irrigationPerPlant: "प्रति रोप",
+    soilMoisture: "मातीतील आर्द्रता",
+    soilMoistureLevel: "मध्यम",
+    waterSavingTip: "सायंकाळी सिंचन केल्यास सुमारे 18% पाणी बचत होते",
+
+    marketPredictionTitle: "बाजार भाव अंदाज",
+    marketTrendNote: "अलीकडील बाजारातील ट्रेंडवर आधारित",
+
+    profitEstimatorTitle: "खर्च व नफा",
+    expensesLabel: "खर्च",
+    expectedProfitLabel: "अनुमानित नफा",
+    projectedProfit: "अनुमानित नफा",
+    regionalComparison:
+      "तुमचा खर्च xxxxxxxxx प्रदेशातील 72% शेतकऱ्यांपेक्षा कमी आहे",
+
+    farmerBenefits: [
+      {
+        title: "अचूक पीक नियोजन",
+        desc: "हवामान आणि मातीच्या आधारे दिलेले अंदाज योग्य वेळी योग्य पिकाची निवड करायला मदत करतात.",
+        img: "/benefit1.jpg",
+      },
+      {
+        title: "पीक नुकसानात घट",
+        desc: "कीड, रोग आणि हवामान अलर्ट वेळेवर सूचना देऊन उत्पादन सुरक्षित ठेवतात.",
+        img: "/benefit2.jpg",
+      },
+      {
+        title: "चांगले बाजारभाव",
+        desc: "लाईव्ह बाजारभाव आणि मागणी डेटा शेतकऱ्यांना जास्त नफा मिळवून देतो.",
+        img: "/benefit3.jpg",
+      },
+    ],
   },
 };
 
