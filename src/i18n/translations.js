@@ -39,14 +39,18 @@ const TRANSLATIONS = {
     redirecting: "Redirecting to pickup status...",
 
     // Crops
-    wheat: "Wheat",
     rice: "Rice",
+    wheat: "Wheat",
+    soybean: "Soybean",
+    sugarcane: "Sugarcane",
+    cotton: "Cotton",
+    maize: "Maize",
+    jowar: "Jowar",
+    bajra: "Bajra",
+    tur: "Tur (Pigeon Pea)",
+    chana: "Chana (Chickpea)",
     onion: "Onion",
     tomato: "Tomato",
-    potato: "Potato",
-    soybean: "Soybean",
-    cotton: "Cotton",
-    sugarcane: "Sugarcane",
 
     // Sell crop page
     sellYourCrop: "Sell Your Crop",
@@ -147,39 +151,68 @@ const TRANSLATIONS = {
       "Reduce moisture in wheat before storing to prevent spoilage.",
 
     support_desc: "Need help? We are here for you.",
-support_phone: "Phone",
-support_email: "Email",
-support_time: "Working Hours",
+    support_phone: "Phone",
+    support_email: "Email",
+    support_time: "Working Hours",
 
-pickupTitle: "Pickup Status",
-pickupSubtitle: "Track your sell requests",
-pickupRequestNo: "Request Number",
-pickupPlaceholder: "Enter Request Number",
-pickupTrack: "Track Pickup",
-pickupActive: "Active Request",
-pickupInProgress: "In Progress",
-pickupRequestSent: "Request Sent",
-pickupAssigned: "Pickup Assigned",
-pickupOutForPickup: "Out for Pickup",
-pickupCompleted: "Completed",
-pickupAssignedTo: "Assigned to",
-pickupExpected: "Expected",
-pickupCall: "Call Support",
-pickupNotFound: "No request found for this number",
+    pickupTitle: "Pickup Status",
+    pickupSubtitle: "Track your sell requests",
+    pickupRequestNo: "Request Number",
+    pickupPlaceholder: "Enter Request Number",
+    pickupTrack: "Track Pickup",
+    pickupActive: "Active Request",
+    pickupInProgress: "In Progress",
+    pickupRequestSent: "Request Sent",
+    pickupAssigned: "Pickup Assigned",
+    pickupOutForPickup: "Out for Pickup",
+    pickupCompleted: "Completed",
+    pickupAssignedTo: "Assigned to",
+    pickupExpected: "Expected",
+    pickupCall: "Call Support",
+    pickupNotFound: "No request found for this number",
 
-profileTitle: "My Profile",
-profileUpdated: "Profile updated successfully!",
-profileName: "Full Name",
-profilePhone: "Mobile Number",
-profileAddress: "Address",
-profileSelectCity: "Select Your City",
-profileLanguage: "English",   // shows current language
-profileEdit: "Edit Profile",
-profileSave: "Save Changes",
-profileCancel: "Cancel"
+    profileTitle: "My Profile",
+    profileUpdated: "Profile updated successfully!",
+    profileName: "Full Name",
+    profilePhone: "Mobile Number",
+    profileAddress: "Address",
+    profileSelectCity: "Select Your City",
+    profileLanguage: "English", // shows current language
+    profileEdit: "Edit Profile",
+    profileSave: "Save Changes",
+    profileCancel: "Cancel",
 
+    dashboardOverview: "Farm Overview",
+    overviewSubtitle: "Quick summary to help you decide today",
+    yourCrops: "Your Crops",
+    checkPrices: "Check Prices",
+    checkWeather: "Check Weather",
+    overview: "Overview",
 
+    trendingCrops: "Trending Crops",
 
+    myRequests: "My Requests",
+
+    farmerBenefitsTitle: "Farmer Benefits",
+farmerBenefitsSubtitle: "Smart farming made simple and powerful",
+
+farmerBenefits: [
+  {
+    title: "Accurate Crop Planning",
+    desc: "Weather-based predictions help choose the right crop at the right time.",
+    img: "/benefit1.jpg"
+  },
+  {
+    title: "Reduced Crop Loss",
+    desc: "Early alerts for pests, soil issues, and diseases save your yield.",
+    img: "/benefit2.jpg"
+  },
+  {
+    title: "Better Market Prices",
+    desc: "Live mandi prices and demand insights help you sell smarter.",
+    img: "/benefit3.jpg"
+  }
+]
 
   },
 
@@ -217,15 +250,18 @@ profileCancel: "Cancel"
     successLine2: "का",
     successLine3: "JD सॉल्यूशन को भेज दिया गया है।",
     redirecting: "पिकअप स्थिति पर भेजा जा रहा है...",
-
-    wheat: "गेहूं",
     rice: "चावल",
+    wheat: "गेहूँ",
+    soybean: "सोयाबीन",
+    sugarcane: "गन्ना",
+    cotton: "कपास",
+    maize: "मक्का",
+    jowar: "ज्वार",
+    bajra: "बाजरा",
+    tur: "अरहर (तूर)",
+    chana: "चना",
     onion: "प्याज़",
     tomato: "टमाटर",
-    potato: "आलू",
-    soybean: "सोयाबीन",
-    cotton: "कपास",
-    sugarcane: "गन्ना",
 
     sellYourCrop: "अपनी फसल बेचें",
     bestPriceLine: "JD सॉल्यूशन से सबसे अच्छा रेट पाएं",
@@ -325,39 +361,60 @@ profileCancel: "Cancel"
     insight_tip_desc: "गेहूं भंडारण से पहले उसमें से नमी कम करें।",
 
     support_desc: "मदद चाहिए? हम आपकी सहायता के लिए हैं।",
-support_phone: "फोन",
-support_email: "ईमेल",
-support_time: "समय",
+    support_phone: "फोन",
+    support_email: "ईमेल",
+    support_time: "समय",
 
-pickupTitle: "पिकअप स्थिति",
-pickupSubtitle: "अपनी बिक्री अनुरोध ट्रैक करें",
-pickupRequestNo: "अनुरोध संख्या",
-pickupPlaceholder: "अनुरोध संख्या दर्ज करें",
-pickupTrack: "पिकअप ट्रैक करें",
-pickupActive: "सक्रिय अनुरोध",
-pickupInProgress: "प्रक्रिया में",
-pickupRequestSent: "अनुरोध भेजा गया",
-pickupAssigned: "पिकअप सौंपा गया",
-pickupOutForPickup: "पिकअप के लिए निकला",
-pickupCompleted: "पूरा हुआ",
-pickupAssignedTo: "सौंपा गया",
-pickupExpected: "अपेक्षित",
-pickupCall: "सपोर्ट कॉल करें",
-pickupNotFound: "इस संख्या के लिए कोई अनुरोध नहीं मिला",
+    pickupTitle: "पिकअप स्थिति",
+    pickupSubtitle: "अपनी बिक्री अनुरोध ट्रैक करें",
+    pickupRequestNo: "अनुरोध संख्या",
+    pickupPlaceholder: "अनुरोध संख्या दर्ज करें",
+    pickupTrack: "पिकअप ट्रैक करें",
+    pickupActive: "सक्रिय अनुरोध",
+    pickupInProgress: "प्रक्रिया में",
+    pickupRequestSent: "अनुरोध भेजा गया",
+    pickupAssigned: "पिकअप सौंपा गया",
+    pickupOutForPickup: "पिकअप के लिए निकला",
+    pickupCompleted: "पूरा हुआ",
+    pickupAssignedTo: "सौंपा गया",
+    pickupExpected: "अपेक्षित",
+    pickupCall: "सपोर्ट कॉल करें",
+    pickupNotFound: "इस संख्या के लिए कोई अनुरोध नहीं मिला",
 
-profileTitle: "मेरा प्रोफ़ाइल",
-profileUpdated: "प्रोफ़ाइल सफलतापूर्वक अपडेट हुई!",
-profileName: "पूरा नाम",
-profilePhone: "मोबाइल नंबर",
-profileAddress: "पता",
-profileSelectCity: "अपने शहर का चयन करें",
-profileLanguage: "हिंदी",  // shows current language
-profileEdit: "प्रोफ़ाइल संपादित करें",
-profileSave: "परिवर्तन सहेजें",
-profileCancel: "रद्द करें"
+    profileTitle: "मेरा प्रोफ़ाइल",
+    profileUpdated: "प्रोफ़ाइल सफलतापूर्वक अपडेट हुई!",
+    profileName: "पूरा नाम",
+    profilePhone: "मोबाइल नंबर",
+    profileAddress: "पता",
+    profileSelectCity: "अपने शहर का चयन करें",
+    profileLanguage: "हिंदी", // shows current language
+    profileEdit: "प्रोफ़ाइल संपादित करें",
+    profileSave: "परिवर्तन सहेजें",
+    profileCancel: "रद्द करें",
 
+    trendingCrops: "लोकप्रिय फसलें",
+    myRequests: "मेरी रिक्वेस्ट",
 
+    farmerBenefitsTitle: "किसानों के लिए लाभ",
+farmerBenefitsSubtitle: "स्मार्ट खेती अब आसान और अधिक फायदेमंद",
 
+farmerBenefits: [
+  {
+    title: "सही फसल योजना",
+    desc: "मौसम और मिट्टी आधारित सुझाव आपको सही समय पर सही फसल चुनने में मदद करते हैं।",
+    img: "/benefit1.jpg"
+  },
+  {
+    title: "फसल नुकसान में कमी",
+    desc: "कीट, रोग और मौसम अलर्ट समय पर चेतावनी देकर उपज बचाते हैं।",
+    img: "/benefit2.jpg"
+  },
+  {
+    title: "बेहतर बाजार भाव",
+    desc: "मंडी के लाइव भाव और मांग के डेटा से किसान अच्छी कीमत प्राप्त कर सकते हैं।",
+    img: "/benefit3.jpg"
+  }
+]
 
   },
 
@@ -395,15 +452,18 @@ profileCancel: "रद्द करें"
     successLine2: "चे",
     successLine3: "JD सोल्यूशनकडे पाठवली आहे.",
     redirecting: "पिकअप स्थितीकडे वळवित आहे...",
-
-    wheat: "गहू",
     rice: "तांदूळ",
+    wheat: "गहू",
+    soybean: "सोयाबीन",
+    sugarcane: "ऊस",
+    cotton: "कापूस",
+    maize: "मका",
+    jowar: "ज्वारी",
+    bajra: "बाजरी",
+    tur: "तूर",
+    chana: "हरभरा",
     onion: "कांदा",
     tomato: "टोमॅटो",
-    potato: "बटाटा",
-    soybean: "सोयाबीन",
-    cotton: "कापूस",
-    sugarcane: "ऊस",
 
     sellYourCrop: "आपले पिक विक्री करा",
     bestPriceLine: "JD सोल्यूशन कडून सर्वोत्तम दर मिळवा",
@@ -502,37 +562,66 @@ profileCancel: "रद्द करें"
     insight_tip_desc: "गहू साठवण्यापूर्वी त्यातील ओलावा कमी करा.",
 
     support_desc: "मदत हवी आहे? आम्ही तुमच्यासाठी आहोत.",
-support_phone: "फोन",
-support_email: "ईमेल",
-support_time: "वेळ",
-pickupTitle: "पिकअप स्थिती",
-pickupSubtitle: "तुमच्या विक्री विनंत्या ट्रॅक करा",
-pickupRequestNo: "विनंती क्रमांक",
-pickupPlaceholder: "विनंती क्रमांक टाका",
-pickupTrack: "पिकअप ट्रॅक करा",
-pickupActive: "सक्रिय विनंती",
-pickupInProgress: "प्रगतीत",
-pickupRequestSent: "विनंती पाठवली",
-pickupAssigned: "पिकअप नियुक्त",
-pickupOutForPickup: "पिकअपसाठी निघाले",
-pickupCompleted: "पूर्ण",
-pickupAssignedTo: "नियुक्त",
-pickupExpected: "अपेक्षित",
-pickupCall: "सपोर्ट कॉल करा",
-pickupNotFound: "या क्रमांकासाठी विनंती आढळली नाही",
+    support_phone: "फोन",
+    support_email: "ईमेल",
+    support_time: "वेळ",
+    pickupTitle: "पिकअप स्थिती",
+    pickupSubtitle: "तुमच्या विक्री विनंत्या ट्रॅक करा",
+    pickupRequestNo: "विनंती क्रमांक",
+    pickupPlaceholder: "विनंती क्रमांक टाका",
+    pickupTrack: "पिकअप ट्रॅक करा",
+    pickupActive: "सक्रिय विनंती",
+    pickupInProgress: "प्रगतीत",
+    pickupRequestSent: "विनंती पाठवली",
+    pickupAssigned: "पिकअप नियुक्त",
+    pickupOutForPickup: "पिकअपसाठी निघाले",
+    pickupCompleted: "पूर्ण",
+    pickupAssignedTo: "नियुक्त",
+    pickupExpected: "अपेक्षित",
+    pickupCall: "सपोर्ट कॉल करा",
+    pickupNotFound: "या क्रमांकासाठी विनंती आढळली नाही",
 
-profileTitle: "माझा प्रोफाइल",
-profileUpdated: "प्रोफाइल यशस्वीरित्या अपडेट झाली!",
-profileName: "पूर्ण नाव",
-profilePhone: "मोबाईल नंबर",
-profileAddress: "पत्ता",
-profileSelectCity: "आपले शहर निवडा",
-profileLanguage: "मराठी",  // shows current language
-profileEdit: "प्रोफाइल संपादित करा",
-profileSave: "बदल जतन करा",
-profileCancel: "रद्द करा"
+    profileTitle: "माझा प्रोफाइल",
+    profileUpdated: "प्रोफाइल यशस्वीरित्या अपडेट झाली!",
+    profileName: "पूर्ण नाव",
+    profilePhone: "मोबाईल नंबर",
+    profileAddress: "पत्ता",
+    profileSelectCity: "आपले शहर निवडा",
+    profileLanguage: "मराठी", // shows current language
+    profileEdit: "प्रोफाइल संपादित करा",
+    profileSave: "बदल जतन करा",
+    profileCancel: "रद्द करा",
 
+    overview: "आढावा",
+    dashboardOverview: "शेतीचा आढावा",
+    overviewSubtitle: "आजचे निर्णय घेण्यासाठी जलद सारांश",
+    yourCrops: "तुमची पिके",
+    checkPrices: "बाजारभाव पहा",
+    checkWeather: "हवामान पहा",
 
+    trendingCrops: "लोकप्रिय पिके",
+    myRequests: "माझ्या विनंत्या",
+
+    farmerBenefitsTitle: "शेतकऱ्यांसाठी फायदे",
+farmerBenefitsSubtitle: "स्मार्ट शेती आता सोपी आणि अधिक प्रभावी",
+
+farmerBenefits: [
+  {
+    title: "अचूक पीक नियोजन",
+    desc: "हवामान आणि मातीच्या आधारे दिलेले अंदाज योग्य वेळी योग्य पिकाची निवड करायला मदत करतात.",
+    img: "/benefit1.jpg"
+  },
+  {
+    title: "पीक नुकसानात घट",
+    desc: "कीड, रोग आणि हवामान अलर्ट वेळेवर सूचना देऊन उत्पादन सुरक्षित ठेवतात.",
+    img: "/benefit2.jpg"
+  },
+  {
+    title: "चांगले बाजारभाव",
+    desc: "लाईव्ह बाजारभाव आणि मागणी डेटा शेतकऱ्यांना जास्त नफा मिळवून देतो.",
+    img: "/benefit3.jpg"
+  }
+]
 
   },
 };

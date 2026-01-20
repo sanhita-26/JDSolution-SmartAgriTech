@@ -12,11 +12,7 @@ const MAHARASHTRA_CITIES = [
   "Chandrapur","Gondia","Bhandara","Ahmednagar","Palghar"
 ];
 
-const AVATARS = [
-  "/avatar1.jpg",
-  "/avatar2.jpg",
-  "/avatar3.jpg",
-];
+const AVATARS = ["/avatar1.jpg", "/avatar2.jpg", "/avatar3.jpg"];
 
 export default function ProfilePage() {
   const { language, setLanguage } = useContext(AppContext);
@@ -32,11 +28,22 @@ export default function ProfilePage() {
   });
 
   const [editing, setEditing] = useState(false);
+  const [myOrders, setMyOrders] = useState([]);
 
-  // Load user data from localStorage
+  // ✅ LOAD USER + USER ORDERS (CORRECT PLACE)
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) setUser(storedUser);
+    const allOrders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    if (storedUser) {
+      setUser(storedUser);
+
+      const filteredOrders = allOrders.filter(
+        (order) => order.user === storedUser.name
+      );
+
+      setMyOrders(filteredOrders);
+    }
   }, []);
 
   const handleChange = (e) => {
@@ -63,20 +70,23 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
+
       <div className="flex justify-center items-start pt-10 px-4">
         <div className="bg-white shadow-xl rounded-2xl w-full max-w-md p-6 flex flex-col items-center gap-4">
 
-          {/* My Profile Title */}
-          <h2 className="text-2xl font-bold text-gray-800">{t.profileTitle}</h2>
+          {/* TITLE */}
+          <h2 className="text-2xl font-bold text-gray-800">
+            {t.profileTitle}
+          </h2>
 
-          {/* Avatar */}
+          {/* AVATAR */}
           <img
             src={user.avatar}
             alt="avatar"
             className="w-32 h-32 rounded-full border-4 border-green-600 object-cover"
           />
 
-          {/* Avatar selection */}
+          {/* AVATAR SELECT */}
           {editing && (
             <div className="flex gap-3">
               {AVATARS.map((a, i) => (
@@ -87,13 +97,13 @@ export default function ProfilePage() {
                   onClick={() => handleAvatarSelect(a)}
                   className={`w-16 h-16 rounded-full border-2 cursor-pointer ${
                     user.avatar === a ? "border-green-600" : "border-gray-200"
-                  } hover:scale-105 transition`}
+                  }`}
                 />
               ))}
             </div>
           )}
 
-          {/* User Details */}
+          {/* USER DETAILS */}
           <div className="flex flex-col w-full gap-4 mt-2">
             <input
               type="text"
@@ -102,9 +112,7 @@ export default function ProfilePage() {
               onChange={handleChange}
               disabled={!editing}
               placeholder={t.profileName}
-              className={`text-center text-xl font-semibold text-gray-800 border-b ${
-                editing ? "border-green-600" : "border-transparent"
-              } outline-none`}
+              className="text-center text-xl font-semibold border-b outline-none"
             />
 
             <input
@@ -114,9 +122,7 @@ export default function ProfilePage() {
               onChange={handleChange}
               disabled={!editing}
               placeholder={t.profilePhone}
-              className={`text-center text-gray-700 border-b ${
-                editing ? "border-green-600" : "border-transparent"
-              } outline-none`}
+              className="text-center border-b outline-none"
             />
 
             <input
@@ -126,12 +132,9 @@ export default function ProfilePage() {
               onChange={handleChange}
               disabled={!editing}
               placeholder={t.profileAddress}
-              className={`text-center text-gray-700 border-b ${
-                editing ? "border-green-600" : "border-transparent"
-              } outline-none`}
+              className="text-center border-b outline-none"
             />
 
-            {/* Preferred Crop */}
             <input
               type="text"
               name="preferredCrop"
@@ -139,18 +142,16 @@ export default function ProfilePage() {
               onChange={handleChange}
               disabled={!editing}
               placeholder={t.profilePreferredCrop}
-              className={`text-center text-gray-700 border-b ${
-                editing ? "border-green-600" : "border-transparent"
-              } outline-none`}
+              className="text-center border-b outline-none"
             />
 
-            {/* Location Dropdown */}
+            {/* LOCATION */}
             {editing ? (
               <select
                 name="location"
                 value={user.location}
                 onChange={handleChange}
-                className="text-center border-b border-green-600 outline-none p-1"
+                className="text-center border-b outline-none"
               >
                 <option value="">{t.profileSelectCity}</option>
                 {MAHARASHTRA_CITIES.map((city) => (
@@ -158,38 +159,39 @@ export default function ProfilePage() {
                 ))}
               </select>
             ) : (
-              <p className="text-center text-gray-700">{user.location}</p>
+              <p className="text-center">{user.location}</p>
             )}
 
-            {/* Language Dropdown */}
+            {/* LANGUAGE */}
             {editing ? (
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="text-center border-b border-green-600 outline-none p-1"
+                className="text-center border-b outline-none"
               >
-                <option value="en">{TRANSLATIONS.en.profileLanguage}</option>
-                <option value="hi">{TRANSLATIONS.hi.profileLanguage}</option>
-                <option value="mr">{TRANSLATIONS.mr.profileLanguage}</option>
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="mr">Marathi</option>
               </select>
             ) : (
-              <p className="text-center text-gray-700">{t.profileLanguage}</p>
+              <p className="text-center">{t.profileLanguage}</p>
             )}
           </div>
 
-          {/* Buttons */}
+          {/* BUTTONS */}
           <div className="flex gap-4 mt-4">
             {editing ? (
               <>
                 <button
                   onClick={handleSave}
-                  className="flex items-center gap-2 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+                  className="flex items-center gap-2 bg-green-600 text-white px-6 py-2 rounded"
                 >
                   <Save size={16} /> {t.profileSave}
                 </button>
+
                 <button
                   onClick={handleCancel}
-                  className="flex items-center gap-2 border border-gray-400 text-gray-600 px-6 py-2 rounded hover:bg-gray-100 transition"
+                  className="flex items-center gap-2 border px-6 py-2 rounded"
                 >
                   <X size={16} /> {t.profileCancel}
                 </button>
@@ -197,12 +199,54 @@ export default function ProfilePage() {
             ) : (
               <button
                 onClick={() => setEditing(true)}
-                className="flex items-center gap-2 border border-green-600 text-green-700 px-6 py-2 rounded hover:bg-green-50 transition"
+                className="flex items-center gap-2 border px-6 py-2 rounded"
               >
                 <Edit2 size={16} /> {t.profileEdit}
               </button>
             )}
           </div>
+
+          {/* ✅ MY REQUESTS */}
+          {myOrders.length > 0 && (
+            <div className="w-full mt-6">
+              <h3 className="text-lg font-bold mb-3">
+                {t.myRequests || "My Requests"}
+              </h3>
+
+              <div className="space-y-3">
+                {myOrders.map((order, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 border rounded-xl p-3 bg-gray-50"
+                  >
+                    <img
+                      src={order.photo || "/logo.png"}
+                      alt="crop"
+                      className="w-14 h-14 rounded-lg object-cover border"
+                    />
+
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm">
+                        {order.crop} • {order.qty} {order.unit}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        Token: #{order.trackingNo}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+<button
+  onClick={() => window.location.href = "/sell-crop"}
+  className="mt-4 w-full bg-green-700 text-white py-3 rounded-xl font-semibold hover:bg-green-800 transition"
+>
+  {t.submitAnotherRequest || "Submit New Request"}
+</button>
+
+
         </div>
       </div>
     </div>
