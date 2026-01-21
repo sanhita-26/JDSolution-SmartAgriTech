@@ -93,7 +93,6 @@ const verifyOtp = () => {
 };
 
 
-  // SIGNUP
  // SIGNUP
 const handleSignup = () => {
   if (!fullName || phone.length !== 10 || !location) return;

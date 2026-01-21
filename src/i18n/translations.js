@@ -222,6 +222,14 @@ const TRANSLATIONS = {
     expectedProfitLabel: "Expected Profit",
     projectedProfit: "Projected profit",
     regionalComparison: "Lower spending than 72% farmers in xxxxxxxxx region",
+    dashboard: "Dashboard",
+sell: "Sell Crop",
+track: "Track Order",
+support: "Support",
+logout: "Logout",
+selectTaluka: "Select Taluka",
+selectTalukaLabel: "Select your taluka",
+dashboardOverview: "Farm Overview",
 
     farmerBenefits: [
       {
@@ -450,6 +458,15 @@ const TRANSLATIONS = {
     expectedProfitLabel: "अनुमानित मुनाफ़ा",
     projectedProfit: "अनुमानित मुनाफ़ा",
     regionalComparison: "आपका खर्च xxxxxxxxx क्षेत्र के 72% किसानों से कम है",
+
+    dashboard: "डैशबोर्ड",
+sell: "फसल बेचें",
+track: "ऑर्डर ट्रैक करें",
+support: "सहायता",
+logout: "लॉगआउट",
+selectTaluka: "तालुका चुनें",
+selectTalukaLabel: "अपना तालुका चुनें",
+dashboardOverview: "खेत का विवरण",
 
     farmerBenefits: [
       {
@@ -684,6 +701,16 @@ const TRANSLATIONS = {
     projectedProfit: "अनुमानित नफा",
     regionalComparison:
       "तुमचा खर्च xxxxxxxxx प्रदेशातील 72% शेतकऱ्यांपेक्षा कमी आहे",
+
+    dashboard: "डॅशबोर्ड",
+sell: "पिक विक्री",
+track: "ऑर्डर ट्रॅक",
+support: "मदत",
+logout: "लॉगआउट",
+selectTaluka: "तालुका निवडा",
+selectTalukaLabel: "तुमचा तालुका निवडा",
+dashboardOverview: "शेताचा आढावा",
+
 
     farmerBenefits: [
       {
