@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import {
   Truck,
@@ -11,46 +11,64 @@ import {
 } from "lucide-react";
 import { AppContext } from "../context/AppContext";
 import TRANSLATIONS from "../i18n/translations";
+import axios from "axios";
 
 export default function PickupStatusSection() {
   const { language } = useContext(AppContext);
   const t = TRANSLATIONS[language];
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [requestNo, setRequestNo] = useState("");
   const [found, setFound] = useState(true);
   const [matchedOrder, setMatchedOrder] = useState(null);
 
-  // Load all orders
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-  // Latest order for first display
-  const latest = orders[orders.length - 1] || null;
-
-  // Show latest automatically
+  /* 🔹 AUTO LOAD IF TRACKING NO COMES FROM SUCCESS PAGE */
   useEffect(() => {
-    if (latest) setMatchedOrder(latest);
+    if (location.state?.trackingNo) {
+      const tn = location.state.trackingNo;
+      setRequestNo(tn);
+      fetchOrder(tn);
+    }
   }, []);
 
-  // SEARCH HANDLER
+  /* 🔹 FETCH ORDER FROM BACKEND */
+  const fetchOrder = async (trackingNo) => {
+    try {
+      setFound(true);
+      const res = await axios.get(
+        `http://localhost:5000/api/orders/track/${trackingNo}`
+      );
+
+      if (res.data.success) {
+        setMatchedOrder(res.data.order);
+        setFound(true);
+      }
+    } catch (err) {
+      setMatchedOrder(null);
+      setFound(false);
+    }
+  };
+
+  /* 🔹 SEARCH HANDLER */
   const handleSearch = () => {
     const searchId = requestNo.trim();
-
     if (!searchId) {
       setFound(false);
       setMatchedOrder(null);
       return;
     }
+    fetchOrder(searchId);
+  };
 
-    const foundOrder = orders.find((o) => String(o.trackingNo) === searchId);
-
-    if (foundOrder) {
-      setMatchedOrder(foundOrder);
-      setFound(true);
-    } else {
-      setMatchedOrder(null);
-      setFound(false);
-    }
+  /* 🔹 FORMAT DATE */
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
   };
 
   return (
@@ -84,63 +102,52 @@ export default function PickupStatusSection() {
           </div>
 
           {!found && (
-            <p className="text-red-500 text-sm mb-4">{t.pickupNotFound}</p>
+            <p className="text-red-500 text-sm mb-4">
+              {t.pickupNotFound}
+            </p>
           )}
 
           {/* STATUS CARD */}
           {found && matchedOrder && (
             <div className="border rounded-xl p-4">
 
-              {/* PHOTO + NAME */}
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={matchedOrder.photo || "/logo.png"}
-                  className="w-14 h-14 rounded-xl object-cover border"
-                  alt="crop"
-                />
-
-                <div>
-                  <p className="font-semibold">{matchedOrder.crop}</p>
-                  <p className="text-sm text-gray-500">
-                    {matchedOrder.qty} {matchedOrder.unit}
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    #{matchedOrder.trackingNo}
-                  </p>
-                </div>
+              {/* ORDER INFO */}
+              <div className="mb-4">
+                <p className="font-semibold">{matchedOrder.crop}</p>
+                <p className="text-sm text-gray-500">
+                  {matchedOrder.qty} {matchedOrder.unit}
+                </p>
+                <p className="text-xs text-gray-400">
+                  Tracking No: #{matchedOrder.trackingNo}
+                </p>
+                <p className="text-xs text-gray-400">
+                  Order Date: {formatDate(matchedOrder.createdAt)}
+                </p>
               </div>
 
-              {/* STATUS PILL */}
+              {/* STATUS */}
               <span className="bg-orange-100 text-orange-700 text-xs px-3 py-1 rounded-full">
-                {t.pickupInProgress}
+                {matchedOrder.status}
               </span>
 
               {/* TIMELINE */}
               <div className="space-y-4 mt-4">
                 <TimelineItem icon={<Clock />} text={t.pickupRequestSent} active />
-
-                <TimelineItem
-                  icon={<Package />}
-                  text={`${t.pickupAssigned} • ${t.pickupAssignedTo}: Team A`}
-                  sub={`${t.pickupExpected}: Today`}
-                  active
-                />
-
+                <TimelineItem icon={<Package />} text={t.pickupAssigned} active />
                 <TimelineItem icon={<Truck />} text={t.pickupOutForPickup} />
                 <TimelineItem icon={<CheckCircle />} text={t.pickupCompleted} />
               </div>
 
               {/* SUPPORT */}
-              
               <button
-              onClick={() => navigate("/support")} 
-              className="mt-6 w-full bg-green-700 text-white py-2 rounded flex items-center justify-center gap-2">
+                onClick={() => navigate("/support")}
+                className="mt-6 w-full bg-green-700 text-white py-2 rounded flex items-center justify-center gap-2"
+              >
                 <Phone size={16} />
                 {t.pickupCall}
               </button>
-              
 
-              {/* SUBMIT NEW REQUEST */}
+              {/* NEW REQUEST */}
               <button
                 onClick={() => navigate("/sell-crop")}
                 className="mt-3 w-full bg-green-600 text-white py-2 rounded-xl font-semibold"
@@ -156,8 +163,8 @@ export default function PickupStatusSection() {
   );
 }
 
-/* ---------------- TIMELINE ITEM ---------------- */
-function TimelineItem({ icon, text, sub, active }) {
+/* TIMELINE ITEM */
+function TimelineItem({ icon, text, active }) {
   return (
     <div className="flex gap-3 items-start">
       <div
@@ -167,10 +174,7 @@ function TimelineItem({ icon, text, sub, active }) {
       >
         {icon}
       </div>
-      <div>
-        <p className="font-medium">{text}</p>
-        {sub && <p className="text-sm text-gray-500">{sub}</p>}
-      </div>
+      <p className="font-medium">{text}</p>
     </div>
   );
 }

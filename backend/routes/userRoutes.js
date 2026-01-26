@@ -34,19 +34,35 @@ router.post("/login", async (req, res) => {
 
   res.json(user);
 });
-
-// Update Profile
-router.put("/update", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
-    const updated = await User.findOneAndUpdate(
-      { phone: req.body.phone },
-      req.body,
+    console.log("UPDATE ID:", req.params.id);
+    console.log("UPDATE BODY:", req.body);
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        name: req.body.name,
+        location: req.body.location,
+        preferredCrops: req.body.preferredCrops,
+        avatar: req.body.avatar,
+      },
       { new: true }
     );
-    res.json(updated);
+
+    if (!updatedUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.json({ success: true, user: updatedUser });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("UPDATE ERROR:", err);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
+
 
 export default router;

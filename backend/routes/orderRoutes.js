@@ -3,28 +3,110 @@ import Order from "../models/Order.js";
 
 const router = express.Router();
 
-// Create order (Sell Crop)
+/* ---------------- TRACKING NUMBER ---------------- */
+const generateTrackingNo = () => {
+  return "JD" + Math.floor(100000 + Math.random() * 900000);
+};
+
+/* ---------------- CREATE ORDER ---------------- */
 router.post("/create", async (req, res) => {
   try {
-    const order = await Order.create(req.body);
-    res.json(order);
+    console.log("ORDER BODY:", req.body);
+
+    const {
+      user,
+      phone,
+      location,
+      crop,
+      qty,
+      unit,
+      photo,
+    } = req.body;
+
+    /* BASIC VALIDATION */
+    if (!phone || !location || !crop || !qty || !unit) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields",
+      });
+    }
+
+    const order = await Order.create({
+      user: user || "Farmer",
+      phone,
+      location,
+      crop,
+      qty: Number(qty),
+      unit,
+      photo: photo || "",
+
+      trackingNo: generateTrackingNo(),
+
+      status: "Requested",
+      assignedTo: "Not Assigned",
+      expectedPickupDate: "Today",
+    });
+
+    console.log("ORDER SAVED:", order.trackingNo);
+
+    return res.status(201).json({
+      success: true,
+      message: "Order placed successfully",
+      order,
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("ORDER ERROR:", err);
+
+    return res.status(500).json({
+      success: false,
+      message: "Order creation failed",
+    });
   }
 });
 
-// Get orders of a user
-router.get("/user/:name", async (req, res) => {
-  const orders = await Order.find({ user: req.params.name });
-  res.json(orders);
+/* ---------------- TRACK ORDER ---------------- */
+router.get("/track/:trackingNo", async (req, res) => {
+  try {
+    const { trackingNo } = req.params;
+
+    const order = await Order.findOne({ trackingNo });
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    return res.json({
+      success: true,
+      order,
+    });
+  } catch (err) {
+    console.error("TRACK ERROR:", err);
+
+    return res.status(500).json({
+      success: false,
+      message: "Tracking failed",
+    });
+  }
 });
 
-// Track a specific order
-router.get("/:trackingNo", async (req, res) => {
-  const order = await Order.findOne({ trackingNo: req.params.trackingNo });
-  if (!order) return res.status(404).json({ message: "Not found" });
-  res.json(order);
+/* ---------------- GET ALL ORDERS (OPTIONAL BUT USEFUL) ---------------- */
+router.get("/", async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
+
+    return res.json({
+      success: true,
+      orders,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch orders",
+    });
+  }
 });
 
 export default router;
-

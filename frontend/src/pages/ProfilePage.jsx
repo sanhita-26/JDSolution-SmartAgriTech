@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Edit2, Save, X, LogOut } from "lucide-react";
 import { AppContext } from "../context/AppContext";
 import TRANSLATIONS from "../i18n/translations";
+import axios from "axios";
 
 const MAHARASHTRA_CITIES = [
   "Mumbai","Pune","Nagpur","Nashik","Aurangabad","Solapur",
@@ -33,7 +34,6 @@ export default function ProfilePage() {
     const allOrders = JSON.parse(localStorage.getItem("orders")) || [];
 
     if (storedUser) {
-      // Ensure preferredCrops exists as an array
       if (!Array.isArray(storedUser.preferredCrops)) {
         storedUser.preferredCrops = [];
       }
@@ -49,16 +49,29 @@ export default function ProfilePage() {
 
   if (!user) return null;
 
-  /* SAVE */
-  const handleSave = () => {
-    localStorage.setItem("user", JSON.stringify(user));
-    setEditing(false);
-    alert(t.profileUpdated);
+  const handleSave = async () => {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/api/users/update/${user._id}`,
+        {
+          name: user.name,
+          location: user.location,
+          preferredCrops: user.preferredCrops,
+          avatar: user.avatar,
+        }
+      );
+
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      setUser(res.data.user);
+      setEditing(false);
+      alert("Profile updated successfully");
+    } catch (err) {
+      alert("Update failed");
+    }
   };
 
   const handleCancel = () => {
-    const u = JSON.parse(localStorage.getItem("user"));
-    setUser(u);
+    setUser(JSON.parse(localStorage.getItem("user")));
     setEditing(false);
   };
 
@@ -78,7 +91,6 @@ export default function ProfilePage() {
           <h2 className="text-3xl font-bold text-green-700">
             {t.profileTitle}
           </h2>
-
           <button
             onClick={logout}
             className="flex items-center gap-2 text-red-600 hover:text-red-700"
@@ -89,7 +101,7 @@ export default function ProfilePage() {
 
         {/* PROFILE CARD */}
         <div className="bg-white rounded-3xl shadow-md p-6 mb-6">
-          
+
           {/* AVATAR */}
           <div className="flex flex-col items-center mb-4">
             <img
@@ -106,7 +118,9 @@ export default function ProfilePage() {
                     src={a}
                     onClick={() => setUser({ ...user, avatar: a })}
                     className={`w-16 h-16 rounded-full cursor-pointer border-2 ${
-                      user.avatar === a ? "border-green-600" : "border-gray-300"
+                      user.avatar === a
+                        ? "border-green-600"
+                        : "border-gray-300"
                     }`}
                   />
                 ))}
@@ -116,28 +130,30 @@ export default function ProfilePage() {
 
           {/* DETAILS */}
           <div className="space-y-4">
-
             <input
               type="text"
               disabled={!editing}
               value={user.name}
-              onChange={(e) => setUser({ ...user, name: e.target.value })}
+              onChange={(e) =>
+                setUser({ ...user, name: e.target.value })
+              }
               className="w-full text-center text-xl border-b outline-none"
             />
 
             <input
               type="text"
-              disabled={!editing}
               value={user.phone}
-              onChange={(e) => setUser({ ...user, phone: e.target.value })}
-              className="w-full text-center border-b outline-none"
+              disabled
+              className="w-full text-center border-b outline-none bg-gray-100 cursor-not-allowed"
             />
 
             <input
               type="text"
               disabled={!editing}
               value={user.address || ""}
-              onChange={(e) => setUser({ ...user, address: e.target.value })}
+              onChange={(e) =>
+                setUser({ ...user, address: e.target.value })
+              }
               className="w-full text-center border-b outline-none"
               placeholder={t.profileAddress}
             />
@@ -146,7 +162,9 @@ export default function ProfilePage() {
             {editing ? (
               <select
                 value={user.location}
-                onChange={(e) => setUser({ ...user, location: e.target.value })}
+                onChange={(e) =>
+                  setUser({ ...user, location: e.target.value })
+                }
                 className="w-full border-b outline-none text-center"
               >
                 <option value="">{t.profileSelectCity}</option>
@@ -170,7 +188,9 @@ export default function ProfilePage() {
                 <option value="mr">Marathi</option>
               </select>
             ) : (
-              <p className="text-center text-gray-600">{t.profileLanguage}</p>
+              <p className="text-center text-gray-600">
+                {t.profileLanguage}
+              </p>
             )}
 
             {/* PREFERRED CROPS */}
@@ -186,10 +206,16 @@ export default function ProfilePage() {
                     value=""
                     onChange={(e) => {
                       const crop = e.target.value;
-                      if (crop && !user.preferredCrops.includes(crop)) {
+                      if (
+                        crop &&
+                        !user.preferredCrops.includes(crop)
+                      ) {
                         setUser({
                           ...user,
-                          preferredCrops: [...user.preferredCrops, crop],
+                          preferredCrops: [
+                            ...user.preferredCrops,
+                            crop,
+                          ],
                         });
                       }
                     }}
@@ -211,9 +237,10 @@ export default function ProfilePage() {
                           onClick={() =>
                             setUser({
                               ...user,
-                              preferredCrops: user.preferredCrops.filter(
-                                (x) => x !== crop
-                              ),
+                              preferredCrops:
+                                user.preferredCrops.filter(
+                                  (x) => x !== crop
+                                ),
                             })
                           }
                           className="text-red-500 font-bold"
@@ -243,7 +270,7 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* EDIT/SAVE BUTTONS */}
+          {/* EDIT / SAVE */}
           <div className="flex justify-center gap-4 mt-6">
             {editing ? (
               <>
@@ -271,35 +298,32 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* ORDERS */}
+        {/* ✅ MY REQUESTS — IMAGE REMOVED ONLY */}
         {myOrders.length > 0 && (
           <div className="bg-white p-4 rounded-3xl shadow mb-6">
-            <h3 className="text-lg font-bold mb-3">{t.myRequests}</h3>
+            <h3 className="text-lg font-bold mb-3">
+              {t.myRequests}
+            </h3>
+
             <div className="space-y-3">
               {myOrders.map((order, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 border rounded-xl p-3 bg-gray-50"
+                  className="border rounded-xl p-3 bg-gray-50"
                 >
-                  <img
-                    src={order.photo || "/logo.png"}
-                    className="w-16 h-16 rounded-lg object-cover border"
-                  />
-                  <div>
-                    <p className="font-semibold text-sm">
-                      {order.crop} • {order.qty} {order.unit}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      Token: #{order.trackingNo}
-                    </p>
-                  </div>
+                  <p className="font-semibold text-sm">
+                    {order.crop} • {order.qty} {order.unit}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    Token: #{order.trackingNo}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {/* NEW REQUEST BTN */}
+        {/* NEW REQUEST */}
         <button
           onClick={() => (window.location.href = "/sell-crop")}
           className="w-full bg-green-700 text-white py-3 rounded-full font-bold text-lg"

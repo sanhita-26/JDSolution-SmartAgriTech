@@ -6,6 +6,7 @@ import SellCrop from "./pages/SellCrop";
 import Support from "./pages/Support";
 import PickupStatusSection from "./pages/PickupStatusSection";
 import ProfilePage from "./pages/ProfilePage";
+import SuccessScreen from "./components/SuccessScreen";
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/sell-crop" element={<SellCrop />} />
+        <Route path="/success" element={<SuccessScreen />} />
         <Route path="/track" element={<PickupStatusSection />} />
         <Route path="/profile" element={<ProfilePage />} />
          <Route path="/support" element={<Support />} />
